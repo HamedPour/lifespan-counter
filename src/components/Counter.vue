@@ -26,19 +26,28 @@ export default {
   },
   mounted() {
     this.$nextTick(() => {
-      this.countdown(this.userDate.day, this.userDate.month, this.userDate.year);
+      this.countdown(this.userDate.day,
+        this.userDate.month,
+        this.userDate.year,
+        this.userDate.lifespan);
     });
   },
   methods: {
     reset() {
       this.$emit('reset');
     },
-    countdown(aDay, aMonth, aYear) {
+    countdown(aDay, aMonth, aYear, aLifespan) {
+      /*
+        Function converts a specific date into a countdown timer to that date.
+        inputs: 4 all ints
+        return: void -> setInterval calls
+      */
       const theMonth = aMonth - 1;
-      const DeathDate = new Date(aYear, theMonth, aDay).getTime();
+      const deathYear = aYear + aLifespan;
+      const deathDate = new Date(deathYear, theMonth, aDay).getTime();
       const theFinalCountdown = setInterval(() => {
         const currentTime = new Date().getTime();
-        const distance = DeathDate - currentTime;
+        const distance = deathDate - currentTime;
 
         this.days = Math.floor(distance / (1000 * 60 * 60 * 24));
         this.hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
