@@ -10,6 +10,11 @@ export default {
   validator(userDate) {
     /**
      *  Basic input checker
+     * 
+     *  Input: object with 4 int elements.
+     *  Output: object with 2 elements. A boolean and a string.
+     * 
+     *  Functionality:
      *  1. Make sure that all values are Numbers.
      *  2. Make sure that each date is within is correct range.
      *  3. (later) Make sure that dates dont result in negative counter.
